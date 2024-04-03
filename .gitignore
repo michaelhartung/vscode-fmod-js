@@ -1,0 +1,12 @@
+# Mac
+.DS_Store
+
+# VSCode
+.vscode
+
+# NodeJS
+dist/
+node_modules
+
+# vsce
+*.vsix
