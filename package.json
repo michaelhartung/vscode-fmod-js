@@ -1,0 +1,105 @@
+{
+  "name": "vscode-fmod-js",
+  "displayName": "FMOD Studio JS",
+  "description": "FMOD Studio remote js execution extension.",
+  "publisher": "Michael Hartung",
+  "version": "0.1.0",
+  "icon": "./media/icon.png",
+  "pricing": "Free",
+  "engines": {
+    "vscode": "^1.87.0"
+  },
+  "keywords": [
+    "fmod",
+    "javascript",
+    "debug"
+  ],
+  "categories": [
+    "Other",
+    "Debuggers"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michaelhartung/vscode-fmod-js"
+  },
+  "bugs": {
+    "url": "https://github.com/michaelhartung/vscode-fmod-js/issues"
+  },
+  "author": {
+    "name": "Michael Hartung",
+    "url": "https://hartung.studio"
+  },
+  "homepage": "https://hartung.studio/project/fmod-vscode",
+  "qna": "marketplace",
+  "license": "MIT",
+  "activationEvents": [
+    "onLanguage:javascript"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "category": "FMOD",
+        "command": "fmod-js.attach",
+        "title": "Attach"
+      },
+      {
+        "category": "FMOD",
+        "command": "fmod-js.detach",
+        "title": "Detach"
+      },
+      {
+        "category": "FMOD",
+        "command": "fmod-js.run",
+        "title": "Run",
+        "enablement": "editorLangId==javascript"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "fmod-js.run",
+        "key": "ctrl+enter"
+      }
+    ],
+    "configuration": [
+      {
+        "title": "FMOD Studio JS",
+        "properties": {
+          "fmod-js.remote.host": {
+            "type": "string",
+            "default": "127.0.0.1",
+            "markdownDescription": "FMOD Studio Remote Host",
+            "scope": "resource",
+            "order": 1,
+            "pattern": "^[0-9.]+$"
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.87.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "ts-loader": "^9.5.1",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4",
+    "@vscode/test-cli": "^0.0.6",
+    "@vscode/test-electron": "^2.3.9"
+  }
+}
